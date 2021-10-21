@@ -1,0 +1,110 @@
+<div class="d-flex " id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light" id="sidebar-wrapper">
+        <div class="sidebar-heading" style="background-color: #e3f2fd;"> <i class="fa fa-clock-o"></i> {{now}}</div>
+        <div class="list-group list-group-flush">
+            <a [routerLink]="['/']" class="list-group-item list-group-item-action bg-light"><i class="fa fa-home" aria-hidden="true"></i> Accueil</a>
+            <a [routerLink]="['/','niveau','college']" class="list-group-item list-group-item-action bg-light"> Collège</a>
+            <a [routerLink]="['/','niveau','lycee']" class="list-group-item list-group-item-action bg-light"> Lycée</a>
+            <a [routerLink]="['/','niveau','regional']" class="list-group-item list-group-item-action bg-light"> Examens Régionaux</a>
+            <a [routerLink]="['/','niveau','national']" class="list-group-item list-group-item-action bg-light"> Examens Nationaux</a>
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <nav class="navbar navbar-expand-sm navbar-light " style="background-color: #e3f2fd;">
+            <div id="hovv">
+                <a class="navbar-brand" [routerLink]="['/']"><i class="fa fa-graduation-cap" aria-hidden="true"> Taalim</i> </a>
+            </div>
+
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+             </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId dropdownId">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0" id="hov">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-folder" aria-hidden="true"> Collège</i>
+                           </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <li class="nav-item dropright">
+                                <a class="dropdown-item dropdown-toggle " aria-haspopup="true" aria-expanded="false"> 1ère année</a>
+                                <div class="dropdown-menu">
+                                    <a [routerLink]="['/source/1AcMath']" class="dropdown-item">Mathématique</a>
+                                    <a [routerLink]="['/source/1AcPc']" class="dropdown-item ">Physique</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropright">
+                                <a class="dropdown-item dropdown-toggle " aria-haspopup="true" aria-expanded="false"> 2ème année</a>
+                                <div class="dropdown-menu">
+                                    <a [routerLink]="['/source/2AcMath']" class="dropdown-item">Mathématique</a>
+                                    <a [routerLink]="['/source/2AcPc']" class="dropdown-item ">Physique</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropright">
+                                <a class="dropdown-item dropdown-toggle" aria-haspopup="true" aria-expanded="false"> 3ème année</a>
+                                <div class="dropdown-menu">
+                                    <a [routerLink]="['/source/3AcMath']" class="dropdown-item">Mathématique</a>
+                                    <a [routerLink]="['/source/3AcPc']" class="dropdown-item ">Physique</a>
+                                </div>
+                            </li>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle " href="#" data-toggle="dropdown" aria-haspopup="true " aria-expanded="false "><i class="fa fa-folder " aria-hidden="true "> Lycée</i>
+                            </a>
+                        <div class="dropdown-menu " aria-labelledby="dropdownId ">
+                            <li class="nav-item dropright">
+                                <a class="dropdown-item dropdown-toggle " aria-haspopup="true" aria-expanded="false"> Tronc Coummun</a>
+                                <div class="dropdown-menu">
+                                    <a [routerLink]="['/source/troncMath']" class="dropdown-item">Mathématique</a>
+                                    <a [routerLink]="['/source/troncPc']" class="dropdown-item ">Physique</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropright">
+                                <a class="dropdown-item dropdown-toggle " aria-haspopup="true" aria-expanded="false"> 1ère année bac</a>
+                                <div class="dropdown-menu">
+                                    <a [routerLink]="['/source/1BacMath']" class="dropdown-item">Mathématique</a>
+                                    <a [routerLink]="['/source/1BacPc']" class="dropdown-item ">Physique</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropright">
+                                <a class="dropdown-item dropdown-toggle " aria-haspopup="true" aria-expanded="false"> 2ère année bac</a>
+                                <div class="dropdown-menu">
+                                    <a [routerLink]="['/source/2BacMath']" class="dropdown-item">Mathématique</a>
+                                    <a [routerLink]="['/source/2BacPc']" class="dropdown-item ">Physique</a>
+                                </div>
+                            </li>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav " id="xyz">
+                    <li class="nav-item " *ngIf="isloggedIn ">
+                        <a class="nav-link " [routerLink]="[ ('/contact')] "> <i class="fa fa-envelope-o " aria-hidden="true "></i> Contact <span class="sr-only ">(current)</span></a>
+                    </li>
+                    <li class="nav-item " *ngIf="!isloggedIn ">
+                        <a class="nav-link " [routerLink]="[ '/login'] "><i class="fa fa-sign-in " aria-hidden="true "></i>
+                             Login <span class="sr-only ">(current)</span></a>
+                    </li>
+                    <li class="nav-item " *ngIf="isloggedIn ">
+                        <a class="nav-link" (click)=" logOut() "><i class="fa fa-sign-out " aria-hidden="true "></i>
+                             Logout <span class="sr-only ">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid mt-3">
+            <div *ngIf="isloggedIn && !isVerify" class="alert alert-danger col-3 text-center" role="alert">
+                <div class="text-danger"><i class="fa fa-envelope" aria-hidden="true"></i> Please verify your email ! </div>
+            </div>
+            <ng-content select=".body ">
+
+            </ng-content>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+
+<app-footer></app-footer>

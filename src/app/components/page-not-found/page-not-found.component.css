@@ -1,0 +1,29 @@
+.button {
+    color: #fff;
+    padding: 12px 36px;
+    font-weight: 600;
+    border: none;
+    position: relative;
+    font-family: 'Raleway', sans-serif;
+    display: inline-block;
+    text-transform: uppercase;
+    -webkit-border-radius: 90px;
+    -moz-border-radius: 90px;
+    border-radius: 90px;
+    margin: 2px;
+    margin-top: 2px;
+    background-image: linear-gradient(to right, #09b3ef 0%, #1e50e2 51%, #09b3ef 100%);
+    background-size: 200% auto;
+    flex: 1 1 auto;
+    text-decoration: none;
+}
+
+.button:hover,
+.button:focus {
+    color: #ffffff;
+    background-position: right center;
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}

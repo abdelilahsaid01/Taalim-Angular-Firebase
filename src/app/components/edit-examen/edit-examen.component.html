@@ -1,0 +1,36 @@
+<div class="row m-3">
+    <div class="col-md-12">
+        <a [routerLink]="['/source',param]" routerLinkActive="router-link-active"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Retour</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <h4 class="card-header"> <i class="fa fa-folder-o" aria-hidden="true"></i> Edier un Examen Régional</h4>
+            <div class="card-body">
+                <h4 class="card-title"> <i class="fa fa-user" aria-hidden="true"></i> Edit Examen</h4>
+                <form #formControle="ngForm" (ngSubmit)="updateExamen()">
+                    <div class="form-group">
+                        <label for="annee">Année</label>
+                        <input type="number" class="form-control" name="annee" id="annee" placeholder="" [(ngModel)]="examen.annee" #Annee="ngModel" required [ngClass]="{'is-invalid': Annee.errors && Annee.touched}">
+                        <div [hidden]="!Annee.errors?.required" class="invalid-feedback">Année est obligatoire!</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="linkRegion">Non de la Région</label>
+                        <input type="text" class="form-control" name="linkRegion" id="linkRegion" placeholder="" [(ngModel)]="examen.linkRegion" #LinkRegion="ngModel" required [ngClass]="{'is-invalid': LinkRegion.errors && LinkRegion.touched}">
+                        <div [hidden]="!LinkRegion.errors?.required" class="invalid-feedback">Nom de la région est obligatoire</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="LinkExamen">Lien d'examen</label>
+                        <input type="text" class="form-control" name="linkExamen" id="LinkExamen" placeholder="" [(ngModel)]="examen.linkExamen">
+                    </div>
+                    <div class="form-group">
+                        <label for="LinkCorrectionRegional">Lien de la correction de l'examen</label>
+                        <input type="text" class="form-control" name="linkCorrectionRegional" id="LinkCorrectionRegional" placeholder="" [(ngModel)]="examen.linkCorrectionRegional">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" [disabled]="formControle.invalid">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="row m-3">
+    <div class="col-md-12">
+        <a [routerLink]="['/source',param]" routerLinkActive="router-link-active"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Retour</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <h4 class="card-header"> <i class="fa fa-folder-o" aria-hidden="true"></i> Modifier un Cours en {{matiere}}</h4>
+            <div class="card-body">
+                <h4 class="card-title"> <i class="fa fa-user" aria-hidden="true"></i> Update Cours</h4>
+                <form #formClient="ngForm" (ngSubmit)="updateCours()">
+                    <div class="form-group">
+                        <label for="Nom">Numero du Cours</label>
+                        <input type="number" class="form-control" name="num" id="Nom" placeholder="" [(ngModel)]="cours.num" #CoursName="ngModel" required [ngClass]="{'is-invalid': CoursName.errors && CoursName.touched}">
+                        <div [hidden]="!CoursName.errors?.required" class="invalid-feedback">Nom du cours est obligatoire!</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Nom">Nom du Cours</label>
+                        <input type="text" class="form-control" name="nom" id="Nom" placeholder="Veuillez saisir le nom du cours avec son numéro d'ordre..." [(ngModel)]="cours.nom" #CoursName="ngModel" required [ngClass]="{'is-invalid': CoursName.errors && CoursName.touched}">
+                        <div [hidden]="!CoursName.errors?.required" class="invalid-feedback">Nom du cours est obligatoire!</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="LinkCours">Lien du Cours</label>
+                        <input type="text" class="form-control" name="linkCours" id="LinkCours" placeholder="Veuillez saisir le Lien du cours..." [(ngModel)]="cours.linkCours">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="LinkExercices">Lien de la série</label>
+                        <input type="text" class="form-control" name="linkExercices" id="LinkExercices" placeholder="Veuillez saisir le Lien du cours..." [(ngModel)]="cours.linkExercices">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="LinkCorrectionExercices">Lien de la correction de la série</label>
+                        <input type="text" class="form-control" name="LinkCorrectionExercices" id="linkCorrectionExercices" placeholder="Veuillez saisir le Lien du cours..." [(ngModel)]="cours.linkCorrectionExercices">
+                    </div>
+
+                    <button type="submit" class="btn btn-warning btn-block" [disabled]="formClient.invalid">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="row m-3">
+    <div class="col-md-12">
+        <a [routerLink]="['/source',param]" routerLinkActive="router-link-active"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Retour</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <h4 class="card-header"> <i class="fa fa-folder-o" aria-hidden="true"></i> Modifier un Contrôle en {{matiere}}</h4>
+            <div class="card-body">
+                <h4 class="card-title"> <i class="fa fa-user" aria-hidden="true"></i> Add Controle</h4>
+                <form #formControle="ngForm" (ngSubmit)="updateCtr()">
+                    <div class="form-group">
+                        <label for="semestre">Numero de la semestre</label>
+                        <input type="number" class="form-control" name="semestre" id="semestre" placeholder="" [(ngModel)]="controle.semestre" #Semestre="ngModel" required [ngClass]="{'is-invalid': Semestre.errors && Semestre.touched}">
+                        <div [hidden]="!Semestre.errors?.required" class="invalid-feedback">Nom du cours est obligatoire!</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ID">Numero du Controle</label>
+                        <input type="number" class="form-control" name="num" id="ID" placeholder="" [(ngModel)]="controle.num" #ID="ngModel" required [ngClass]="{'is-invalid': ID.errors && ID.touched}">
+                        <div [hidden]="!ID.errors?.required" class="invalid-feedback">Numéro du Controle est obligatoire!</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="LinkControle">Lien du Controle</label>
+                        <input type="text" class="form-control" name="linkControle" id="LinkControle" placeholder="" [(ngModel)]="controle.linkControle">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" [disabled]="formControle.invalid">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

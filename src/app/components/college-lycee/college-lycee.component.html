@@ -1,0 +1,42 @@
+<div class="alert alert-success" role="alert">
+    <div class="text-danger"><i class="fa fa-folder" aria-hidden="true"></i> Niveau {{titleNiveau}} </div>
+</div>
+<a [routerLink]="['/']"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Retour</a>
+
+<div class="row mt-3">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <h6 class="card-header text-center">Veuillez choisir votre niveau scolaire</h6>
+            <div class="card-body">
+                <div class="row ">
+                    <div class="col">
+                        <a (click)="status1()" class="btn btn-outline-success btn-block">{{niveau1}}</a>
+                    </div>
+                    <div class="col" *ngIf="niveau2">
+                        <a (click)="status2()" class="btn btn-outline-danger ">{{niveau2}}</a>
+                    </div>
+                    <div class="col " *ngIf="niveau3">
+                        <a (click)="status3()" class="btn btn-outline-warning ">{{niveau3}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3" *ngIf="status">
+    <div class="col-md-4 mx-auto">
+        <div class="card">
+            <h6 class="card-header text-center">Veuillez choisir votre matière préférée</h6>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col col-md-6">
+                        <button [routerLink]="['/source',param1]" class="btn btn-outline-secondary">Mathématique</button>
+                    </div>
+                    <div class="col col-md-6 text-right ">
+                        <button [routerLink]="['/source',param2]" class="btn btn-outline-primary ">Physique</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

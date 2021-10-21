@@ -1,0 +1,135 @@
+<div class="alert alert-success" role="alert">
+    <div class="text-danger"><i class="fa fa-folder" aria-hidden="true"></i> {{alert}} </div>
+</div>
+<a [routerLink]="['/niveau',cycle]" routerLinkActive="router-link-active"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Retour</a>
+
+<div class="row mt-5">
+    <div class="col col-md-10 mx-auto">
+        <div class="card">
+            <div class="card-header ">
+                <div class="row ">
+                    <div class="col col-md-6">
+                        <h5 class="text-dark"> <strong> {{matiere}}</strong></h5>
+                    </div>
+                    <div *ngIf="logged" class="col col-md-6 text-right">
+                        <a *ngIf="is_controle" [routerLink]="['/cours/add',param]" routerLinkActive="router-link-active" class="btn btn-outline-dark"><i class="fa fa-plus" aria-hidden="true"></i>{{title}}</a>
+                        <a *ngIf="!is_controle" [routerLink]="['/examen/add',param]" routerLinkActive="router-link-active" class="btn btn-outline-dark"><i class="fa fa-plus" aria-hidden="true"></i>{{title}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-title">
+                    <div class="input-group input-group-sm mb-3">
+                        <input #data (keyup)="search(data.value)" placeholder="Chercher un cours..." type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-search " aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <br>
+                    <a *ngIf="is_controle" (click)="scrollToElement(target)" class="btn btn-outline-secondary"> <i class="fa fa-folder-open" aria-hidden="true"></i> Examens d'évaluation</a>
+                </div>
+                <!-- <h6 class="card-title text-info"><a href="#">Examens Corrigés</a></h6> -->
+                <table *ngIf="is_controle" class="table table-sm table-striped table-responsive-sm ">
+                    <thead class="thead-inverse thead-dark">
+                        <tr >
+                            <th></th>
+                            <th>Cours</th>
+                            <th>Exercices</th>
+                            <th>Correction d'exercices</th>
+                            <th *ngIf="logged"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let oneCours of cours ">
+                            <td><strong>{{oneCours.num}}</strong></td>
+                            <td scope="row "><strong><a href="{{oneCours.linkCours}} " target="_blank ">{{oneCours.nom}}</a> </strong></td>
+                            <td><a href="{{oneCours.linkExercices}} " target="_blank "><span *ngIf="oneCours.linkExercices">Série d'exercices</span></a></td>
+                            <td><a href="{{oneCours.linkCorrectionExercices}} " target="_blank "><span *ngIf="oneCours.linkCorrectionExercices">Corréction de la série</span></a></td>
+                            <td *ngIf="logged" class="text-right ">
+                                <a class="btn btn-danger mr-1 " (click)="deleteCours(oneCours.id) "> <i class=" fa fa-trash-o " aria-hidden="true "></i> </a>
+                                <a class="btn btn-warning " [routerLink]="[ '/cours/edit/',oneCours.id, param] "> <i class="fa fa-pencil " aria-hidden="true "></i> </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table *ngIf="!is_controle" class="table table-sm table-striped table-responsive-sm ">
+                    <thead class="thead-inverse thead-dark">
+                        <tr >
+                            <th>Examen</th>
+                            <th>Région</th>
+                            <th>Correction d'examen</th>
+                            <th *ngIf="logged"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let oneExamen of examens ">
+                            <td scope="row "><strong><a href="{{oneExamen.linkExamen}} " target="_blank ">Examen régioanl en {{oneExamen.annee}}</a> </strong></td>
+                            <td><a><span>{{oneExamen.linkRegion}}</span></a></td>
+                            <td><a href="{{oneExamen.linkCorrectionRegional}}" target="_blank "><span>Corréction de l'examen</span></a></td>
+                            <td *ngIf="logged" class="text-right ">
+                                <a class="btn btn-danger mr-1 " (click)="deleteExamen(oneExamen.id) "> <i class=" fa fa-trash-o " aria-hidden="true "></i> </a>
+                                <a class="btn btn-warning " [routerLink]="[ '/examen/edit/',oneExamen.id, param] "> <i class="fa fa-pencil " aria-hidden="true "></i> </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div #target class="mt-5 "  *ngIf="is_controle">
+    <div>
+        <div class="row mb-2 ">
+            <div class="col-md-4 mx-auto">
+                <h6 class="text-info "> <strong> Contrôles d'évaluation en {{matiere}}</strong></h6>
+            </div>
+            <div *ngIf="logged" class="col-md-4 mx-auto">
+                <a [routerLink]="[ '/controle/add', param] " routerLinkActive="router-link-active " class="btn btn-outline-dark "><i class="fa fa-plus " aria-hidden="true "></i>
+    Ajouter un Controle
+    </a>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-4 mx-auto">
+                <div class=" list-group ">
+                    <div class="list-group-item list-group-item-action active ">Semèstre 1 </div>
+                    <div *ngFor="let controle of controles ">
+                        <div *ngIf="controle.semestre==1 ">
+                            <div class="list-group-item list-group-item-action ">
+                                <div class="row ">
+                                    <div class="mr-auto ">
+                                        <a href="{{controle.linkControle}} " target="_blank " class=" ">Contrôle N°: {{controle.num}}</a>
+                                    </div>
+                                    <a *ngIf="logged" class="btn btn-danger mr-2 " (click)="deleteCtr(controle.id) "> <i class=" fa fa-trash-o " aria-hidden="true "></i> </a>
+                                    <a *ngIf="logged" class="btn btn-warning " [routerLink]="[ '/controle/edit/',controle.id, param] "> <i class="fa fa-pencil " aria-hidden="true "></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mx-auto">
+                <div class="list-group ">
+                    <a class="list-group-item list-group-item-action active ">Semèstre 2</a>
+                    <div *ngFor="let controle of controles ">
+                        <div *ngIf="controle.semestre==2 ">
+                            <div class="list-group-item list-group-item-action ">
+                                <div class="row ">
+                                    <div class=" mr-auto ">
+                                        <a href="{{controle.linkControle}} " target="_blank " class=" ">Contrôle N°: {{controle.num}}</a>
+                                    </div>
+                                    <a *ngIf="logged" class="btn btn-danger mr-2 " (click)="deleteCtr(controle.id) "> <i class=" fa fa-trash-o " aria-hidden="true "></i> </a>
+                                    <a *ngIf="logged" class="btn btn-warning " [routerLink]="[ '/controle/edit/',controle.id, param] "> <i class="fa fa-pencil " aria-hidden="true "></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>
